@@ -1,0 +1,48 @@
+<h2 class="auth__title">Войдите для работы</h2>
+<form class="auth__form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+  <div class="auth__form-group">
+    <label class="auth__form-label">Email</label>
+    <input class="auth__form-input"
+           formControlName="email"
+           type="email"
+           placeholder="Введите ваш email">
+    <ng-template [ngIf]="signInForm.get('email').touched && signInForm.get('email').invalid">
+      <span class="auth__form-error-message"
+            *ngIf="signInForm.get('email').errors.required">
+        Это обязательное поле
+      </span>
+      <span class="auth__form-error-message"
+            *ngIf="signInForm.get('email').errors.email">
+        Введите корректный email
+      </span>
+    </ng-template>
+  </div>
+  <div class="auth__form-group">
+    <label class="auth__form-label">Пароль</label>
+    <input class="auth__form-input"
+           formControlName="password"
+           *appPasswordEye
+           type="password"
+           placeholder="Введите ваш пароль">
+    <ng-template [ngIf]="signInForm.get('password').touched && signInForm.get('password').invalid">
+      <span class="auth__form-error-message"
+            *ngIf="signInForm.get('password').errors.required">
+        Это обязательное поле
+      </span>
+      <span class="auth__form-error-message"
+            *ngIf="signInForm.get('password').errors.minlength">
+        Пароль должен быть не меньше {{ signInForm.get('password').errors.minlength.requiredLength}} символов
+      </span>
+    </ng-template>
+  </div>
+  <button class="auth__form-submit"
+          [disabled]="signInForm.invalid"
+          type="submit">Войти</button>
+</form>
+<div class="offer">
+  <span>
+    Нет аккаунта?
+    <a class="offer__link"
+       [routerLink]="['../signup']">Зарегестрироваться!</a>
+  </span>
+</div>

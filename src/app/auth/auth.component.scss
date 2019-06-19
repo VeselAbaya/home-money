@@ -1,0 +1,35 @@
+@import "../../assets/styles/variables";
+
+$backgroundColor: #667380;
+$headerTextColor: #97a4b1;
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  background-color: $backgroundColor;
+}
+
+.auth {
+  width: 450px;
+
+  background-color: #ffffff;
+
+  &__header {
+    border-bottom: 2px solid $blue;
+  }
+
+  &__header-title {
+    padding: 20px;
+    margin: 0;
+
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 30px;
+    text-align:center;
+    color: $headerTextColor;
+  }
+}
