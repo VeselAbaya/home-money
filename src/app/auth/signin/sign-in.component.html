@@ -19,11 +19,7 @@
   </div>
   <div class="auth__form-group">
     <label class="auth__form-label">Пароль</label>
-    <input class="auth__form-input"
-           formControlName="password"
-           *appPasswordEye
-           type="password"
-           placeholder="Введите ваш пароль">
+    <app-password-input formControlName="password"></app-password-input>
     <ng-template [ngIf]="signInForm.get('password').touched && signInForm.get('password').invalid">
       <span class="auth__form-error-message"
             *ngIf="signInForm.get('password').errors.required">

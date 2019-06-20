@@ -34,30 +34,15 @@ $inputBottomColor: #d7dde4;
 
       border: none;
       border-bottom: 1px solid $inputBottomColor;
-
-      &:focus {
-        outline: none;
-        border-color: $blue;
-      }
-
-      &.ng-invalid.ng-touched {
-        border-color: $errorColor;
-      }
     }
 
-    &-error-message {
-      display: inline-block;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      bottom: -1.1em;
-
-      color: $errorColor;
-      font-size: 14px;
+    &-input:focus {
+      outline: none;
+      border-color: $blue;
     }
 
-    &-input.password-eye {
-
+    &-input.ng-invalid.ng-touched {
+      border-color: $errorColor;
     }
 
     // auth form checkbox
@@ -78,10 +63,10 @@ $inputBottomColor: #d7dde4;
 
       font-size: 18px;
       line-height: 28px;
+    }
 
-      &:hover {
-        cursor: pointer;
-      }
+    &-checkbox:hover {
+      cursor: pointer;
     }
 
     .custom-checkbox {
@@ -89,34 +74,34 @@ $inputBottomColor: #d7dde4;
       height: 30px;
 
       position: relative;
+    }
 
-      &:after, &:before {
-        content: "";
-        display: block;
+    .custom-checkbox:after, .custom-checkbox:before {
+      content: "";
+      display: block;
 
-        position: absolute;
-        right: -30px;
+      position: absolute;
+      right: -30px;
 
-        width: 25px;
-        height: 3px;
+      width: 25px;
+      height: 3px;
 
-        background-color: darken($blue, 20);
-      }
+      background-color: darken($blue, 20);
+    }
 
-      &:after {
-        top: 13.5px;
-        transform: rotate(45deg);
-      }
+    .custom-checkbox:after {
+      top: 13.5px;
+      transform: rotate(45deg);
+    }
 
-      &:before{
-        bottom: 13.5px;
-        transform: rotate(-45deg);
-      }
+    .custom-checkbox:before{
+      bottom: 13.5px;
+      transform: rotate(-45deg);
+    }
 
-      &:hover:after, &:hover:before {
-        background-color: darken($blue, 10);
-        border-color: darken($blue, 10);
-      }
+    .custom-checkbox:hover:after, .custom-checkbox:hover:before {
+      background-color: darken($blue, 10);
+      border-color: darken($blue, 10);
     }
 
     // focus
@@ -170,19 +155,30 @@ $inputBottomColor: #d7dde4;
       color: #ffffff;
 
       border: none;
+    }
 
-      &:hover {
-        cursor: pointer;
-        background-color: darken($blue, 10);
-      }
+    &-submit:hover {
+      cursor: pointer;
+      background-color: darken($blue, 10);
+    }
 
-      &:active {
-        background-color: darken($blue, 20);
-      }
+    &-submit:active {
+      background-color: darken($blue, 20);
+    }
 
-      &:disabled {
-        background-color: desaturate($blue, 50%);
-      }
+    &-submit:disabled {
+      background-color: desaturate($blue, 50%);
+    }
+
+    &-error-message {
+      display: inline-block;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -1.1em;
+
+      color: $errorColor;
+      font-size: 14px;
     }
   }
 }
