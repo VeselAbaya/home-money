@@ -24,4 +24,8 @@ export class UserService {
       map((response: HttpResponse<IUser>) => response.headers.get('X-Auth'))
     );
   }
+
+  emailAlreadyExists(email: string) {
+    return this.httpClient.get(`${environment.serverURL}/users/email-exists/${email}`);
+  }
 }

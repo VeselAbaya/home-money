@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../shared/user/user.service';
+import { ExistingEmailValidator } from './validators/existingEmail.validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,7 @@ export class SignUpComponent implements OnInit {
       'email': new FormControl(null, [
         Validators.required,
         Validators.email
-      ]),
+      ], ExistingEmailValidator.create(this.userService)),
       'password': new FormControl(null, [
         Validators.required,
         Validators.minLength(6)
@@ -31,7 +32,6 @@ export class SignUpComponent implements OnInit {
     const {email, password, name} = this.signUpForm.value;
     this.userService.signUp(email, password, name).subscribe((token) => {
       localStorage.setItem('token', token);
-      console.log(token);
     });
   }
 }

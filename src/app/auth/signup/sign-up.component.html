@@ -14,6 +14,10 @@
             *ngIf="signUpForm.get('email').errors.email">
         Введите корректный email
       </span>
+      <span class="auth__form-error-message"
+            *ngIf="signUpForm.get('email').errors.emailExists">
+        Данный email уже занят
+      </span>
     </ng-template>
   </div>
   <div class="auth__form-group">
@@ -59,7 +63,7 @@
     </ng-template>
   </div>
   <button class="auth__form-submit"
-          [disabled]="signUpForm.invalid"
+          [disabled]="signUpForm.invalid || signUpForm.pending"
           type="submit">
     Зарегестрироваться
   </button>
