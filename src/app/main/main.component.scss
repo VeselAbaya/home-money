@@ -29,6 +29,10 @@ ul {
   grid-area: nav;
 
   background-color: $navBackgroundColor;
+
+  @media (max-width: 924px) {
+    background-color: red;
+  }
 }
 
 .nav__title {
