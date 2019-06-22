@@ -1,0 +1,220 @@
+@import "../../assets/font-awesome/css/fontello.css";
+@import "../../assets/styles/variables.scss";
+
+$navBackgroundColor: #3a4651;
+$headerBackgroundColor: #d7dde4;
+$mainBackgroundColor: lighten($headerBackgroundColor, 10%);
+
+$headerHeight: 70px;
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:host {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: $headerHeight 1fr;
+  grid-template-areas: "nav header"
+                       "nav content";
+
+  width: 100vw;
+  height: 100vh;
+}
+
+// navigation
+.main__nav {
+  grid-area: nav;
+
+  background-color: $navBackgroundColor;
+}
+
+.nav__title {
+  height: $headerHeight;
+  margin: 0;
+  padding-left: 23px;
+
+  font-weight: normal;
+  line-height: $headerHeight;
+  color: white;
+}
+
+.nav__item-link {
+  display: block;
+  padding: 15px 10px 15px 20px;
+
+  text-decoration: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+
+  transition: color 0.2s,
+              background-color 0.2s;
+
+  &:hover {
+    color: #ffffff;
+    background-color: darken($navBackgroundColor, 5%);
+  }
+
+  &:focus {
+    color: #ffffff;
+    outline: 1px solid $blue;
+  }
+
+  &:active {
+    background-color: darken($navBackgroundColor, 10%);
+  }
+
+  &--active, &--active:hover {
+    color: #ffffff;
+    background-color: $blue;
+  }
+}
+
+// header
+.main__header {
+  grid-area: header;
+
+  display: flex;
+  padding: 0 20px;
+
+  background-color: $headerBackgroundColor;
+}
+
+.header__time {
+  line-height: $headerHeight;
+}
+
+.header__user {
+  position: relative;
+  margin-left: auto;
+
+  &:hover {
+    .user__dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .user__dropdown-toggle {
+      color: $blue;
+
+      &:after {
+        border-top-color: $blue;
+      }
+    }
+  }
+}
+
+$dropdownBorderColor: rgba(126,142,159,.1);
+
+.user__dropdown {
+  position: relative;
+  top: -15px;
+  left: 15px;
+
+  padding: 5px 0;
+
+  background-color: #ffffff;
+
+  border: 1px solid $dropdownBorderColor;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s,
+              visibility 0.21s; // needed for accessibility (visible - semantically
+                                // hide element and there is no chance to focus on
+                                // it's child)
+
+  &:focus-within {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.user__dropdown-toggle {
+  $userColor: #4f5f6f;
+
+  position: relative;
+  width: 100%;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+
+  color: $userColor;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: $headerHeight;
+
+  cursor: pointer;
+
+  transition: color 0.2s;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: calc(70px/2 - 0.2em);
+    margin-left: 0.5em;
+
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 5px solid $userColor;
+
+    transition: border-top-color 0.2s;
+  }
+
+  &:focus {
+    outline: 1px solid $blue;
+    color: $blue;
+
+    &:after {
+      border-top-color: $blue;
+    }
+
+    & + .user__dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.dropdown__item:not(:last-child) {
+  border-bottom: 1px solid $dropdownBorderColor;
+}
+
+.dropdown__action {
+  display: block;
+  padding: 10px 15px;
+
+  cursor: pointer;
+
+  color: $textColor;
+  text-decoration: none;
+
+  transition: color 0.2s,
+              background-color 0.2s;
+
+  &:hover {
+    color: $blue;
+    background-color: #f5f5f5;
+  }
+
+  &:focus {
+    color: $blue;
+    outline: 1px solid $blue;
+  }
+
+  &:active {
+    background-color: darken(#f5f5f5, 5%);
+  }
+}
+
+// main content
+.main__content {
+  grid-area: content;
+
+  background-color: $mainBackgroundColor;
+}

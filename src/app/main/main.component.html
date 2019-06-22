@@ -1,0 +1,60 @@
+<nav class="main__nav">
+  <h1 class="nav__title">Бухгалтерия</h1>
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a class="nav__item-link"
+         routerLink="bill"
+         routerLinkActive="nav__item-link--active">
+        <i class="icon-bill"></i>
+        Счет
+      </a>
+    </li>
+    <li class="nav__item">
+      <a class="nav__item-link"
+         routerLink="history"
+         routerLinkActive="nav__item-link--active">
+        <i class="icon-history"></i>
+        История
+      </a>
+    </li>
+    <li class="nav__item">
+      <a class="nav__item-link"
+         routerLink="planning"
+         routerLinkActive="nav__item-link--active">
+        <i class="icon-planning"></i>
+        Планирование
+      </a>
+    </li>
+    <li class="nav__item">
+      <a class="nav__item-link"
+         routerLink="records"
+         routerLinkActive="nav__item-link--active">
+        <i class="icon-plus"></i>
+        Запись
+      </a>
+    </li>
+  </ul>
+</nav>
+<header class="main__header">
+  <time class="header__time">13:46:27</time>
+  <div class="header__user">
+    <button class="user__dropdown-toggle">Антай</button>
+    <ul class="user__dropdown" #dropdown>
+      <li class="dropdown__item">
+        <a class="dropdown__action" href="#">
+          <i class="icon-plus"></i>
+          Сделать запись
+        </a>
+      </li>
+      <li class="dropdown__item">
+        <a class="dropdown__action" href="#">
+          <i class="icon-logout"></i>
+          Выйти
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+<main class="main__content">
+  <router-outlet></router-outlet>
+</main>
