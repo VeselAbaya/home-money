@@ -1,0 +1,61 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/font-awesome/css/fontello.css";
+
+:host {
+  background-color: $navBackgroundColor;
+
+  @media (max-width: 500px) {
+    display: block;
+    width: 190px;
+    height: 100vh;
+
+    position: absolute;
+    left: -191px; // add 1px because of outline on nav__item-link
+
+    border-right: 30px solid transparent;
+
+    transition: left 0.2s,
+                border-right-width 0.2s;
+  }
+}
+
+.nav__title {
+  height: $headerHeight;
+  margin: 0;
+  padding-left: 23px;
+
+  font-weight: normal;
+  line-height: $headerHeight;
+  color: white;
+}
+
+.nav__item-link {
+  display: block;
+  padding: 15px 10px 15px 20px;
+
+  text-decoration: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+
+  transition: color 0.2s,
+  background-color 0.2s;
+
+  &:hover {
+    color: #ffffff;
+    background-color: darken($navBackgroundColor, 5%);
+  }
+
+  &:focus {
+    color: #ffffff;
+    outline: 1px solid $blue;
+  }
+
+  &:active {
+    background-color: darken($navBackgroundColor, 10%);
+  }
+
+  &--active, &--active:hover {
+    color: #ffffff;
+    background-color: $blue;
+  }
+}
