@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import { BillComponent } from './bill/bill.component';
-import { HistoryComponent } from './history/history.component';
-import { PlanningComponent } from './planning/planning.component';
-import { RecordsComponent } from './records/records.component';
+import { BillComponent } from './pages/bill/bill.component';
+import { HistoryComponent } from './pages/history/history.component';
+import { PlanningComponent } from './pages/planning/planning.component';
+import { RecordsComponent } from './pages/records/records.component';
+import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { RecordsComponent } from './records/records.component';
     BillComponent,
     HistoryComponent,
     PlanningComponent,
-    RecordsComponent
+    RecordsComponent,
+
+    SwipeEmitterDirective
   ],
   imports: [
     CommonModule,

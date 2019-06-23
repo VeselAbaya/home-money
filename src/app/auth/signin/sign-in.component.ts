@@ -8,7 +8,7 @@ import { UserService } from '../../shared/user/user.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  private signInForm: FormGroup;
+  signInForm: FormGroup;
 
   constructor(private userService: UserService) {}
 

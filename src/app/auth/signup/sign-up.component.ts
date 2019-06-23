@@ -9,7 +9,7 @@ import { ExistingEmailValidator } from './validators/existingEmail.validator';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  private signUpForm: FormGroup;
+  signUpForm: FormGroup;
 
   constructor(private userService: UserService) {}
 

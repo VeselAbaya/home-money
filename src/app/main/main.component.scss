@@ -15,7 +15,7 @@ ul {
 
 :host {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: minmax(190px, 20%) 80%;
   grid-template-rows: $headerHeight 1fr;
   grid-template-areas: "nav header"
                        "nav content";
@@ -29,10 +29,6 @@ ul {
   grid-area: nav;
 
   background-color: $navBackgroundColor;
-
-  @media (max-width: 924px) {
-    background-color: red;
-  }
 }
 
 .nav__title {
@@ -81,7 +77,7 @@ ul {
   grid-area: header;
 
   display: flex;
-  padding: 0 20px;
+  padding-left: 20px;
 
   background-color: $headerBackgroundColor;
 }
@@ -91,7 +87,6 @@ ul {
 }
 
 .header__user {
-  position: relative;
   margin-left: auto;
 
   &:hover {
@@ -113,9 +108,9 @@ ul {
 $dropdownBorderColor: rgba(126,142,159,.1);
 
 .user__dropdown {
-  position: relative;
-  top: -15px;
-  left: 15px;
+  position: absolute;
+  top: 50px;
+  right: 10px;
 
   padding: 5px 0;
 
@@ -142,8 +137,8 @@ $dropdownBorderColor: rgba(126,142,159,.1);
   $userColor: #4f5f6f;
 
   position: relative;
-  width: 100%;
-  padding: 0;
+  min-width: 120px;
+  padding: 0 25px;
 
   background-color: transparent;
   border: none;
@@ -220,5 +215,39 @@ $dropdownBorderColor: rgba(126,142,159,.1);
 .main__content {
   grid-area: content;
 
+  padding: 20px;
+
   background-color: $mainBackgroundColor;
+}
+
+// adaptive
+@media (max-width: 500px) {
+  :host {
+    grid-template-columns: 100%;
+    grid-template-rows: $headerHeight 1fr;
+    grid-template-areas: "header"
+                         "content";
+  }
+
+  .main__nav {
+    display: block;
+    width: 190px;
+    height: 100vh;
+
+    position: absolute;
+    left: -190px;
+
+    border-right: 20px solid transparent;
+
+    transition: left 0.2s,
+                border-right-width 0.2s;
+  }
+
+  .main__header {
+    padding-left: 40px;
+  }
+
+  .main__content {
+    padding-left: 40px;
+  }
 }

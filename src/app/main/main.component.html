@@ -1,4 +1,7 @@
-<nav class="main__nav">
+<nav class="main__nav" #navigation
+     appSwipeEmitter
+     (swipeLeft)="onNavSwipeLeft()"
+     (swipeRight)="onNavSwipeRight()">
   <h1 class="nav__title">Бухгалтерия</h1>
   <ul class="nav__list">
     <li class="nav__item">
@@ -39,7 +42,7 @@
   <time class="header__time">13:46:27</time>
   <div class="header__user">
     <button class="user__dropdown-toggle">Антай</button>
-    <ul class="user__dropdown" #dropdown>
+    <ul class="user__dropdown">
       <li class="dropdown__item">
         <a class="dropdown__action" href="#">
           <i class="icon-plus"></i>
