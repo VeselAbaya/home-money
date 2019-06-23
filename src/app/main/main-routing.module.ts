@@ -8,6 +8,7 @@ import { RecordsComponent } from './pages/records/records.component';
 import { PlanningComponent } from './pages/planning/planning.component';
 
 const routes: Routes = [
+  {path: 'main', redirectTo: 'main/bill', pathMatch: 'full'},
   {path: 'main', component: MainComponent,
     children: [
       {path: 'bill', component: BillComponent},

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../shared/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,7 +11,8 @@ import { UserService } from '../../shared/user/user.service';
 export class SignInComponent implements OnInit {
   signInForm: FormGroup;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private router: Router) {}
 
   ngOnInit() {
     this.signInForm = new FormGroup({
@@ -30,9 +32,17 @@ export class SignInComponent implements OnInit {
     this.userService.signIn(email, password).subscribe(
       (token) => {
         localStorage.setItem('token', token);
+        this.router.navigate(['/main']);
       },
-      () => { // wrong password or email
-
+      (error) => {
+        switch (error.status) {
+          case 403:
+            alert('Неверные данные');
+          break;
+          case 400:
+            alert('Что-то пошло не так');
+          break;
+        }
       });
   }
 }

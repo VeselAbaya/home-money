@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverURL: 'https://antay-home-money.herokuapp.com'
+  serverURL: 'http://localhost:3000'
 };
 
 /*
