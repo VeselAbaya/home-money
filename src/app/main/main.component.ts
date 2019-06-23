@@ -20,7 +20,7 @@ export class MainComponent {
   onNavSwipeLeft() {
     if (window.innerWidth <= 500) {
       this.renderer.setStyle(this.nav.nativeElement, 'left', '-190px');
-      this.renderer.setStyle(this.nav.nativeElement, 'border-right-width', '20px');
+      this.renderer.setStyle(this.nav.nativeElement, 'border-right-width', '30px');
     }
   }
 }
