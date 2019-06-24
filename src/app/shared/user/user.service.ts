@@ -18,7 +18,7 @@ export class UserService {
     );
   }
 
-  signIn(email: string, password: string) {
+  signIn(email: string, password: string): Observable<string> {
     const url = `${environment.serverURL}/users/login`;
     const body = {email, password};
 
@@ -27,12 +27,12 @@ export class UserService {
     );
   }
 
-  emailAlreadyExists(email: string) {
+  emailAlreadyExists(email: string): Observable<boolean> {
     const url = `${environment.serverURL}/users/email-exists/${email}`;
-    return this.httpClient.get(url);
+    return this.httpClient.get<boolean>(url);
   }
 
-  getUser() {
+  getUser(): Observable<IUser> {
     const url = `${environment.serverURL}/users/me`;
     const headers = new HttpHeaders({'X-Auth': localStorage.getItem('token')});
 

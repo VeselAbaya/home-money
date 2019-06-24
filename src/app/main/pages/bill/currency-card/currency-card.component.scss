@@ -1,0 +1,44 @@
+@import "../../../../../assets/font-awesome/css/fontello.css";
+@import "../../../../../assets/styles/variables";
+
+.currency__table {
+  width: 100%;
+
+  border-right: 10px solid #ffffff;
+  border-left: 10px solid #ffffff;
+
+  border-collapse: collapse;
+}
+
+.currency__table-row {
+  height: 45px;
+
+  &:not(&--head):first-child .currency__table-cell {
+    border-top: 1px solid $headerBackgroundColor;
+  }
+
+  &:not(:last-child) .currency__table-cell {
+    border-bottom: 2px solid $blue;
+  }
+
+  &--head {
+    height: 30px;
+  }
+}
+
+.currency__table-cell {
+  &--head {
+    padding: 10px 0 5px;
+
+    font-weight: normal;
+    text-align: left;
+  }
+
+  &:first-child { // currency
+    width: 50px;
+
+    font-size: 18px;
+    color: $blue;
+    text-align: left;
+  }
+}
