@@ -1,5 +1,5 @@
 import { IUser } from './user.interface';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,22 +10,32 @@ export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   signUp(email: string, password: string, name: string): Observable<string> {
-    return this.httpClient.post(`${environment.serverURL}/users`, {
-      email, password, name
-    }, { observe: 'response' }).pipe(
+    const url = `${environment.serverURL}/users`;
+    const body = {email, password, name};
+
+    return this.httpClient.post(url, body, {observe: 'response'}).pipe(
       map((response: HttpResponse<IUser>) => response.headers.get('X-Auth'))
     );
   }
 
   signIn(email: string, password: string) {
-    return this.httpClient.post(`${environment.serverURL}/users/login`, {
-      email, password
-    }, { observe: 'response' }).pipe(
+    const url = `${environment.serverURL}/users/login`;
+    const body = {email, password};
+
+    return this.httpClient.post(url, body, { observe: 'response' }).pipe(
       map((response: HttpResponse<IUser>) => response.headers.get('X-Auth'))
     );
   }
 
   emailAlreadyExists(email: string) {
-    return this.httpClient.get(`${environment.serverURL}/users/email-exists/${email}`);
+    const url = `${environment.serverURL}/users/email-exists/${email}`;
+    return this.httpClient.get(url);
+  }
+
+  getUser() {
+    const url = `${environment.serverURL}/users/me`;
+    const headers = new HttpHeaders({'X-Auth': localStorage.getItem('token')});
+
+    return this.httpClient.get<IUser>(url, { headers });
   }
 }
