@@ -11,12 +11,12 @@ import { map } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
   date = new Date();
-  userName: Observable<string>;
+  $userName: Observable<string>;
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userName = this.userService.getUser().pipe(map((user: IUser) => user.name));
+    this.$userName = this.userService.getUser().pipe(map((user: IUser) => user.name));
   }
 
   onLogout() {

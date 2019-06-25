@@ -7,26 +7,22 @@
     </tr>
   </thead>
   <tbody>
-  <tr class="currency__table-row">
-    <td class="currency__table-cell">
-      <i class="icon-rouble"></i>
-    </td>
-    <td class="currency__table-cell">24</td>
-    <td class="currency__table-cell">22.06.2019</td>
-  </tr>
-  <tr class="currency__table-row">
-    <td class="currency__table-cell">
-      <i class="icon-dollar"></i>
-    </td>
-    <td class="currency__table-cell">26</td>
-    <td class="currency__table-cell">22.06.2019</td>
-  </tr>
-  <tr class="currency__table-row">
-    <td class="currency__table-cell">
-      <i class="icon-euro"></i>
-    </td>
-    <td class="currency__table-cell">0.4</td>
-    <td class="currency__table-cell">22.06.2019</td>
-  </tr>
+    <tr class="currency__table-row" *ngFor="let currency of ['RUB', 'USD', 'EUR']">
+      <td class="currency__table-cell">
+        <i class="icon-{{currency}}"></i>
+      </td>
+        <td class="currency__table-cell">
+          <i *ngIf="!rates">Loading...</i>
+          <ng-template [ngIf]="rates">
+            {{ rates[currency]  | number: '1.2'}}
+          </ng-template>
+        </td>
+        <td class="currency__table-cell">
+          <i *ngIf="!rates">Loading...</i>
+          <ng-template [ngIf]="rates">
+            {{ rates['date'] | date: 'dd.MM.yy' }}
+          </ng-template>
+        </td>
+    </tr>
   </tbody>
 </table>

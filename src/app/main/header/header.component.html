@@ -1,7 +1,7 @@
 <header class="main__header">
   <time class="header__time">{{ date | date: 'dd MMM yyyy' }}</time>
   <div class="header__user">
-    <button class="user__dropdown-toggle">{{ userName | async }}</button>
+    <button class="user__dropdown-toggle">{{ $userName | async }}</button>
     <ul class="user__dropdown">
       <li class="dropdown__item">
         <a class="dropdown__action" routerLink="/main/history">

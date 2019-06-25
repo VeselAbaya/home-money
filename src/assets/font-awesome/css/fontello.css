@@ -63,7 +63,7 @@
 .icon-left-open-big:before { content: '\e805'; } /* '' */
 .icon-planning:before { content: '\f0ce'; } /* '' */
 .icon-bill:before { content: '\f0f7'; } /* '' */
-.icon-euro:before { content: '\f153'; } /* '' */
-.icon-dollar:before { content: '\f155'; } /* '' */
-.icon-rouble:before { content: '\f158'; } /* '' */
+.icon-EUR:before { content: '\f153'; } /* '' */
+.icon-USD:before { content: '\f155'; } /* '' */
+.icon-RUB:before { content: '\f158'; } /* '' */
 .icon-history:before { content: '\f1da'; } /* '' */

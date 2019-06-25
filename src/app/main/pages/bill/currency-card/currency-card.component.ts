@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { BillService } from '../bill.service';
+import { Component, Input } from '@angular/core';
+import { IRates } from '../service/rates.interface';
 
 @Component({
   selector: 'app-currency-card',
@@ -7,7 +7,5 @@ import { BillService } from '../bill.service';
   styleUrls: ['./currency-card.component.scss']
 })
 export class CurrencyCardComponent {
-  constructor(private billService: BillService) {
-
-  }
+  @Input() rates: IRates;
 }

@@ -9,7 +9,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HeaderComponent } from './header/header.component';
 
 import { BillComponent } from './pages/bill/bill.component';
-import { BillService } from './pages/bill/bill.service';
+import { BillService } from './pages/bill/service/bill.service';
 import { BillCardComponent } from './pages/bill/bill-card/bill-card.component';
 import { CurrencyCardComponent } from './pages/bill/currency-card/currency-card.component';
 
