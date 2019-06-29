@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { MainRoutingModule } from './main-routing.module';
+import { MainSharedModule } from './shared/main-shared.module';
 
 import { MainComponent } from './main.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -15,7 +16,10 @@ import { CurrencyCardComponent } from './pages/bill/currency-card/currency-card.
 
 import { HistoryComponent } from './pages/history/history.component';
 import { PlanningComponent } from './pages/planning/planning.component';
+
 import { RecordsComponent } from './pages/records/records.component';
+import { RecordFormComponent } from './pages/records/record-form/record-form.component';
+import { CategoryFormComponent } from './pages/records/category-form/category-form.component';
 
 import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
 
@@ -31,7 +35,10 @@ import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
 
     HistoryComponent,
     PlanningComponent,
+
     RecordsComponent,
+    RecordFormComponent,
+    CategoryFormComponent,
 
     SwipeEmitterDirective
   ],
@@ -39,7 +46,8 @@ import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
     CommonModule,
     FormsModule,
 
-    MainRoutingModule
+    MainRoutingModule,
+    MainSharedModule
   ],
   providers: [BillService]
 })

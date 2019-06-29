@@ -3,24 +3,11 @@
 
 .balance__table {
   width: 100%;
-
-  border-right: 10px solid #ffffff;
-  border-left: 10px solid #ffffff;
-
   border-collapse: collapse;
-}
-
-.balance__table-caption {
-  padding: 10px 10px 5px;
-  text-align: left;
 }
 
 .balance__table-row {
   height: 45px;
-
-  &:first-child .balance__table-cell {
-    border-top: 1px solid $headerBackgroundColor;
-  }
 
   &:not(:last-child) .balance__table-cell {
     border-bottom: 2px solid $blue;

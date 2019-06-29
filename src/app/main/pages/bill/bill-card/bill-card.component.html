@@ -1,16 +1,17 @@
-<table class="balance__table">
-  <caption class="balance__table-caption">Счет</caption>
-  <tbody>
-    <tr class="balance__table-row" *ngFor="let currency of ['RUB', 'USD', 'EUR']">
-      <td class="balance__table-cell" >
-        <i class="icon-{{currency}}"></i>
-      </td>
-      <td class="balance__table-cell">
-        <i *ngIf="!bill || !rates">Loading...</i>
-        <ng-template [ngIf]="bill && rates">
-          {{ (bill.value * rates[currency]) | number: '1.2-2' }}
-        </ng-template>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<app-card title="Счет">
+  <table class="balance__table">
+    <tbody>
+      <tr class="balance__table-row" *ngFor="let currency of ['RUB', 'USD', 'EUR']">
+        <td class="balance__table-cell" >
+          <i class="icon-{{currency}}"></i>
+        </td>
+        <td class="balance__table-cell">
+          <i *ngIf="!bill || !rates">Loading...</i>
+          <ng-template [ngIf]="bill && rates">
+            {{ (bill.value * rates[currency]) | number: '1.2-2' }}
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</app-card>

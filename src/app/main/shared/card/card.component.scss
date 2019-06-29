@@ -1,6 +1,12 @@
+@import "../../../../assets/styles/variables";
+
+$cardOffset: 10px;
+
 .card__title {
-  margin: 0;
-  padding: 10px 10px 5px;
+  margin: 0 $cardOffset;
+  padding: $cardOffset $cardOffset $cardOffset/2;
+
+  border-bottom: 1px solid $headerBackgroundColor;
 
   font-size: 16px;
   font-weight: normal;
@@ -8,6 +14,6 @@
 }
 
 .card__body {
-  padding: 0 10px;
+  padding: 0 $cardOffset;
 }
 
