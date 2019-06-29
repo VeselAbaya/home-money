@@ -1,57 +1,11 @@
-@import "variables";
-
-$inputBottomColor: #d7dde4;
-
-// for auth form
-.auth__title {
-  margin: 20px 0;
-
-  text-align: center;
-  font-size: 16px;
-  font-weight: normal;
-}
-
 .form {
-  margin: 20px 50px;
-
-  &-group {
-    position: relative;
-    margin: 20px 0;
-  }
-
-  &-label {
-    display: block;
-
-    font-size: 14px;
-  }
-
-  &-input {
-    width: 100%;
-    height: 36px;
-
-    font-size: 16px;
-
-    border: none;
-    border-bottom: 1px solid $inputBottomColor;
-  }
-
-  &-input:focus {
-    outline: none;
-    border-color: $blue;
-  }
-
-  &-input.ng-invalid.ng-touched {
-    border-color: $errorColor;
-  }
-
-  // auth form checkbox
   &-input[type="checkbox"] {
     // visually-hidden
     position: absolute !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
     clip: rect(1px, 1px, 1px, 1px);
-    padding:0 !important;
-    border:0 !important;
+    padding: 0 !important;
+    border: 0 !important;
     height: 1px !important;
     width: 1px !important;
     overflow: hidden;
@@ -93,7 +47,7 @@ $inputBottomColor: #d7dde4;
     transform: rotate(45deg);
   }
 
-  .custom-checkbox:before{
+  .custom-checkbox:before {
     bottom: 13.5px;
     transform: rotate(-45deg);
   }
@@ -139,71 +93,7 @@ $inputBottomColor: #d7dde4;
     border-color: $blue;
   }
 
-  &-input[type="checkbox"]:checked + .custom-checkbox:after{
+  &-input[type="checkbox"]:checked + .custom-checkbox:after {
     display: none;
-  }
-
-  &-submit {
-    display: block;
-    width: 100%;
-    height: 40px;
-
-    background-color: $blue;
-
-    font-size: 18px;
-    color: #ffffff;
-
-    border: none;
-  }
-
-  &-submit:hover {
-    cursor: pointer;
-    background-color: darken($blue, 10);
-  }
-
-  &-submit:active {
-    background-color: darken($blue, 20);
-  }
-
-  &-submit:disabled {
-    background-color: desaturate($blue, 50%);
-  }
-
-  &-error-message {
-    display: inline-block;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: -1.1em;
-
-    color: $errorColor;
-    font-size: 14px;
-  }
-}
-
-.offer {
-  margin-bottom: 20px;
-
-  text-align: center;
-
-  &__link {
-    color: $blue;
-    text-decoration: none;
-
-    &:active, &:hover, &:focus {
-      text-decoration: underline;
-    }
-
-    &:active {
-      color: darken($blue, 20);
-    }
-
-    &:hover {
-      color: darken($blue, 15);
-    }
-
-    &:focus {
-      outline: none;
-    }
   }
 }
