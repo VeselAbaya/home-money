@@ -14,12 +14,19 @@ export class BillComponent implements OnInit {
 
   constructor(private billService: BillService) {}
 
-  ngOnInit() {
+  private updateBillAndRates() {
+    this.bill = this.rates = null;
+
     this.billService.getBill().subscribe(bill => {
       this.bill = bill;
       this.billService.getCurrencyFactors(bill.currency).subscribe(rates => {
+        console.log(rates);
         this.rates = rates;
       });
     });
+  }
+
+  ngOnInit() {
+    this.updateBillAndRates();
   }
 }

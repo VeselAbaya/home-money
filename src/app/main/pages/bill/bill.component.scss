@@ -1,3 +1,4 @@
+@import "../../../../assets/font-awesome/css/fontello.css";
 @import "../../../../assets/styles/variables";
 
 .bill__title {
@@ -5,6 +6,25 @@
   padding-bottom: 10px;
 
   border-bottom: 1px solid $headerBackgroundColor;
+}
+
+.bill__refresh {
+  background-color: transparent;
+  border: none;
+
+  font-size: 24px;
+  color: $blue;
+  float: right;
+
+  cursor: pointer;
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    outline: 1px solid $blue;
+  }
 }
 
 .bill__body {

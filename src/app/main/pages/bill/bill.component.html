@@ -1,4 +1,7 @@
-<h2 class="bill__title">Страница Счета</h2>
+<h2 class="bill__title">
+  Страница Счета
+  <button class="icon-refresh bill__refresh" (click)="updateBillAndRates()"></button>
+</h2>
 <div class="bill__body">
   <app-bill-card [bill]="bill" [rates]="rates"></app-bill-card>
   <app-currency-card [rates]="rates"></app-currency-card>

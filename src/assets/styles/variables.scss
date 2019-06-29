@@ -8,4 +8,4 @@ $navBackgroundColor: #3a4651;
 $headerBackgroundColor: #d7dde4;
 $mainBackgroundColor: lighten($headerBackgroundColor, 10%);
 
-$headerHeight: 70px;
+$headerHeight: 55px; // .user__dropdown-toggle in header.component.scss
