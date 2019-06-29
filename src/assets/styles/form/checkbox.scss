@@ -14,47 +14,12 @@
   &-checkbox {
     height: 30px;
 
-    font-size: 18px;
+    font-size: 16px;
     line-height: 28px;
   }
 
   &-checkbox:hover {
     cursor: pointer;
-  }
-
-  .custom-checkbox {
-    display: inline-block;
-    height: 30px;
-
-    position: relative;
-  }
-
-  .custom-checkbox:after, .custom-checkbox:before {
-    content: "";
-    display: block;
-
-    position: absolute;
-    right: -30px;
-
-    width: 25px;
-    height: 3px;
-
-    background-color: darken($blue, 20);
-  }
-
-  .custom-checkbox:after {
-    top: 13.5px;
-    transform: rotate(45deg);
-  }
-
-  .custom-checkbox:before {
-    bottom: 13.5px;
-    transform: rotate(-45deg);
-  }
-
-  .custom-checkbox:hover:after, .custom-checkbox:hover:before {
-    background-color: darken($blue, 10);
-    border-color: darken($blue, 10);
   }
 
   // focus
@@ -96,4 +61,39 @@
   &-input[type="checkbox"]:checked + .custom-checkbox:after {
     display: none;
   }
+}
+
+.custom-checkbox {
+  display: inline-block;
+  height: 30px;
+
+  position: relative;
+}
+
+.custom-checkbox:after, .custom-checkbox:before {
+  content: "";
+  display: block;
+
+  position: absolute;
+  right: -30px;
+
+  width: 25px;
+  height: 3px;
+
+  background-color: darken($blue, 20);
+}
+
+.custom-checkbox:after {
+  top: 13.5px;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox:before {
+  bottom: 13.5px;
+  transform: rotate(-45deg);
+}
+
+.custom-checkbox:hover:after, .custom-checkbox:hover:before {
+  background-color: darken($blue, 10);
+  border-color: darken($blue, 10);
 }

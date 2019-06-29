@@ -4,7 +4,7 @@ $cardOffset: 10px;
 
 .card__title {
   margin: 0 $cardOffset;
-  padding: $cardOffset $cardOffset $cardOffset/2;
+  padding: $cardOffset $cardOffset $cardOffset/2 0;
 
   border-bottom: 1px solid $headerBackgroundColor;
 

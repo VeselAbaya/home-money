@@ -38,10 +38,15 @@ $inputBottomColor: #d7dde4;
   &-input:focus {
     outline: none;
     border-color: $blue;
+    background-color: rgba($blue, 0.05);
   }
 
   &-input.ng-invalid.ng-touched {
     border-color: $errorColor;
+
+    &:focus {
+      background-color: rgba($errorColor, 0.05);
+    }
   }
 
   &-submit {

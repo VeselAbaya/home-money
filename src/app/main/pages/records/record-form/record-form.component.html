@@ -1,0 +1,49 @@
+<app-card title="Добавить Запись">
+  <form [formGroup]="recordForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label">Выберите Категорию</label>
+      <select class="form-input"
+              formControlName="category">
+        <option>Kek</option>
+        <option>LoL</option>
+      </select>
+      <ng-template [ngIf]="recordForm.get('category').touched && recordForm.get('category').invalid">
+        <span class="form-error-message"
+              *ngIf="recordForm.get('category').errors.required">
+          Это обязательное поле
+        </span>
+      </ng-template>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Выберите Тип</label>
+      <label class="form-label form-radio">
+        <input class="form-input"
+               type="radio"
+               value="income"
+               formControlName="recordType">
+        <span class="custom-radio">Доход</span>
+      </label>
+      <label class="form-label form-radio">
+        <input class="form-input"
+               type="radio"
+               value="consumption"
+               formControlName="recordType">
+        <span class="custom-radio">Расход</span>
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Введите Сумму</label>
+      <input class="form-input"
+             type="number"
+             formControlName="value">
+      <ng-template [ngIf]="recordForm.get('value').touched && recordForm.get('value').invalid">
+        <span class="form-error-message"
+              *ngIf="recordForm.get('value').errors.required">
+          Это обязательное поле
+        </span>
+      </ng-template>
+    </div>
+    <button class="form-submit"
+            type="submit">Добавить</button>
+  </form>
+</app-card>

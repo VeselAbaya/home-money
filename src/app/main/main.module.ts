@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainSharedModule } from './shared/main-shared.module';
@@ -44,7 +44,7 @@ import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
 
     MainRoutingModule,
     MainSharedModule
