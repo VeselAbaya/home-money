@@ -20,7 +20,6 @@ export class BillComponent implements OnInit {
     this.billService.getBill().subscribe(bill => {
       this.bill = bill;
       this.billService.getCurrencyFactors(bill.currency).subscribe(rates => {
-        console.log(rates);
         this.rates = rates;
       });
     });
