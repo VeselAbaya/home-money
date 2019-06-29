@@ -1,68 +1,68 @@
 <h2 class="auth__title">Регистрация для полечения доступа</h2>
-<form class="auth__form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <div class="auth__form-group">
-    <label class="auth__form-label">Email</label>
-    <input class="auth__form-input"
+<form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <input class="form-input"
            formControlName="email"
            type="email" placeholder="Введите ваш email">
     <ng-template [ngIf]="signUpForm.get('email').touched && signUpForm.get('email').invalid">
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('email').errors.required">
         Это обязательное поле
       </span>
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('email').errors.email">
         Введите корректный email
       </span>
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('email').errors.emailExists">
         Данный email уже занят
       </span>
     </ng-template>
   </div>
-  <div class="auth__form-group">
-    <label class="auth__form-label">Пароль</label>
+  <div class="form-group">
+    <label class="form-label">Пароль</label>
     <app-password-input formControlName="password"></app-password-input>
     <ng-template [ngIf]="signUpForm.get('password').touched &&
                          signUpForm.get('password').invalid">
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('password').errors.required">
         Это обязательное поле
       </span>
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('password').errors.minlength">
         Пароль должен быть не меньше {{ signUpForm.get('password').errors.minlength.requiredLength}} символов
       </span>
     </ng-template>
   </div>
-  <div class="auth__form-group">
-    <label class="auth__form-label">Имя</label>
-    <input class="auth__form-input"
+  <div class="form-group">
+    <label class="form-label">Имя</label>
+    <input class="form-input"
            formControlName="name"
            type="text" placeholder="Введите ваше имя">
     <ng-template [ngIf]="signUpForm.get('name').touched &&
                          signUpForm.get('name').invalid">
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('name').errors.required">
         Это обязательное поле
       </span>
     </ng-template>
   </div>
-  <div class="auth__form-group">
-    <label class="auth__form-label auth__form-checkbox">
-      <input class="auth__form-input" formControlName="agreeWithRights"
+  <div class="form-group">
+    <label class="form-label form-checkbox">
+      <input class="form-input" formControlName="agreeWithRights"
              type="checkbox">
       <span class="custom-checkbox">Согласен с правами</span>
     </label>
     <ng-template [ngIf]="signUpForm.get('agreeWithRights').touched &&
                          signUpForm.get('agreeWithRights').invalid">
-      <span class="auth__form-error-message"
+      <span class="form-error-message"
             *ngIf="signUpForm.get('agreeWithRights').errors.required">
         Это обязательное поле
       </span>
     </ng-template>
   </div>
-  <button class="auth__form-submit"
+  <button class="form-submit"
           [disabled]="signUpForm.invalid || signUpForm.pending"
           type="submit">
     Зарегестрироваться
