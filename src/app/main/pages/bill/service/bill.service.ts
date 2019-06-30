@@ -17,7 +17,7 @@ export class BillService {
     return this.httpClient.get<IBill>(url, { headers });
   }
 
-  getCurrencyFactors(currency: 'RUB' | 'USD' | 'EUR'): Observable<IRates> {
+  getCurrencyFactors(currency: 'RUB' | 'USD' | 'EUR' = 'RUB'): Observable<IRates> {
     const url = `http://data.fixer.io/api/latest?access_key=${environment.fixerAPIKey}`;
 
     return this.httpClient.get<any>(url).pipe(map((res) => {
