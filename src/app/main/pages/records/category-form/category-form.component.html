@@ -1,3 +1,26 @@
-<p>
-  category-form works!
-</p>
+<app-card title="Добавить Категорию">
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label">Выберите Категорию</label>
+      <select class="form-input"
+              formControlName="name">
+        <option>Kek</option>
+        <option>LoL</option>
+      </select>
+      <ng-template [ngIf]="categoryForm.get('name').touched && categoryForm.get('name').invalid">
+        <span class="form-error-message"
+              *ngIf="categoryForm.get('name').errors.required">
+          Это обязательное поле
+        </span>
+      </ng-template>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Введите Сумму</label>
+      <input class="form-input"
+             type="number"
+             formControlName="limit">
+    </div>
+    <button class="form-submit"
+            type="submit">Добавить</button>
+  </form>
+</app-card>
