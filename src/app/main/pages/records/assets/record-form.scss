@@ -11,4 +11,26 @@
 .form-submit {
   margin-bottom: 10px;
   margin-top: 20px;
+
+  border: 1px solid $blue;
+
+  background-color: transparent;
+
+  color: $blue;
+
+  &:focus, &:hover {
+    outline: none;
+    background-color: rgba($blue, 0.05);
+  }
+
+  &:active {
+    background-color: $blue;
+    color: #ffffff;
+  }
+
+  &:disabled {
+    color: rgba(255, 255, 255, .3);
+    background-color: desaturate($blue, 50%);
+    border: none;
+  }
 }

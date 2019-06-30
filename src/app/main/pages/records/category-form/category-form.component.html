@@ -20,6 +20,9 @@
              formControlName="limit">
     </div>
     <button class="form-submit"
-            type="submit">Добавить</button>
+            type="submit"
+            [disabled]="categoryForm.invalid">
+      Добавить
+    </button>
   </form>
 </app-card>
