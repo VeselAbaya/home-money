@@ -18,6 +18,7 @@ import { HistoryComponent } from './pages/history/history.component';
 import { PlanningComponent } from './pages/planning/planning.component';
 
 import { RecordsComponent } from './pages/records/records.component';
+import { RecordService } from './pages/records/service/record.service';
 import { RecordFormComponent } from './pages/records/record-form/record-form.component';
 import { CategoryFormComponent } from './pages/records/category-form/category-form.component';
 
@@ -49,6 +50,9 @@ import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
     MainRoutingModule,
     MainSharedModule
   ],
-  providers: [BillService]
+  providers: [
+    BillService,
+    RecordService
+  ]
 })
 export class MainModule {}

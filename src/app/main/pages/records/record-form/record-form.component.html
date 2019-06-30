@@ -3,13 +3,14 @@
     <div class="form-group">
       <label class="form-label">Выберите Категорию</label>
       <select class="form-input"
-              formControlName="category">
-        <option>Kek</option>
-        <option>LoL</option>
+              formControlName="categoryName">
+        <option *ngFor="let category of categories">
+          {{category.name}}
+        </option>
       </select>
-      <ng-template [ngIf]="recordForm.get('category').touched && recordForm.get('category').invalid">
+      <ng-template [ngIf]="recordForm.get('categoryName').touched && recordForm.get('categoryName').invalid">
         <span class="form-error-message"
-              *ngIf="recordForm.get('category').errors.required">
+              *ngIf="recordForm.get('categoryName').errors.required">
           Это обязательное поле
         </span>
       </ng-template>
@@ -20,14 +21,14 @@
         <input class="form-input"
                type="radio"
                value="income"
-               formControlName="recordType">
+               formControlName="type">
         <span class="custom-radio">Доход</span>
       </label>
       <label class="form-label form-radio">
         <input class="form-input"
                type="radio"
                value="consumption"
-               formControlName="recordType">
+               formControlName="type">
         <span class="custom-radio">Расход</span>
       </label>
     </div>

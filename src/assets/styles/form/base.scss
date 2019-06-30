@@ -73,6 +73,7 @@ $inputBottomColor: #d7dde4;
 
   &-submit:disabled {
     background-color: desaturate($blue, 50%);
+    cursor: auto;
   }
 
   &-error-message {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RecordService } from '../service/record.service';
 
 @Component({
   selector: 'app-category-form',
@@ -12,7 +13,9 @@ export class CategoryFormComponent {
     limit: new FormControl(null)
   });
 
+  constructor(private recordService: RecordService) {}
+
   onSubmit() {
-    console.log(this.categoryForm.value);
+    this.recordService.createCategory(this.categoryForm.value).subscribe();
   }
 }
