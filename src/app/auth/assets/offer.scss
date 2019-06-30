@@ -1,0 +1,26 @@
+.offer {
+  margin-bottom: 20px;
+
+  text-align: center;
+
+  &__link {
+    color: $blue;
+    text-decoration: none;
+
+    &:active, &:hover, &:focus {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: darken($blue, 20);
+    }
+
+    &:hover {
+      color: darken($blue, 15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
