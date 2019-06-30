@@ -4,3 +4,10 @@
 .custom-radio {
   color: black;
 }
+
+.record-form__textarea {
+  min-height: 18px;
+  width: 100% !important;
+
+  font-family: $defaultFontFamily;
+}

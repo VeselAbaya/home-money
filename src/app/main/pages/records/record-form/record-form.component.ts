@@ -16,7 +16,8 @@ export class RecordFormComponent implements OnInit, OnDestroy {
   private recordForm = new FormGroup({
     categoryName: new FormControl(null, Validators.required),
     type: new FormControl('income'),
-    value: new FormControl(null, Validators.required)
+    value: new FormControl(null, Validators.required),
+    comment: new FormControl(null)
   });
 
   constructor(private recordService: RecordService) {}
@@ -41,8 +42,6 @@ export class RecordFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.recordService.createRecord(this.recordForm.value).subscribe(
-      res => console.log(res)
-    );
+    this.recordService.createRecord(this.recordForm.value).subscribe();
   }
 }
