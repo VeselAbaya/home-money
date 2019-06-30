@@ -1,6 +1,10 @@
 @import "../../../../../assets/styles/form/base";
 @import "../../../../../assets/styles/form/radio";
 
+.form-group {
+  margin: 15px 0;
+}
+
 .form-input {
   background-color: #ffffff;
 }
@@ -11,4 +15,5 @@
 
 .form-submit {
   margin-bottom: 10px;
+  margin-top: 20px;
 }
