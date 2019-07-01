@@ -6,9 +6,9 @@ export class ExistingEmailValidator {
   static create(userService: UserService) {
     return (control: AbstractControl) => {
       return userService.emailAlreadyExists(control.value)
-        .pipe(map(emailExists => {
-          return emailExists ? {'emailExists': control.value} : null;
-        }));
+        .pipe(
+          map(emailExists => emailExists ? {'emailExists': control.value} : null)
+        );
     };
   }
 }

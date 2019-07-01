@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICategory } from '../service/category.interface';
 import { RecordService } from '../service/record.service';
 import { Subscription } from 'rxjs';
+import { CategoryLimitValidator } from './category-limit.validator';
 
 @Component({
   selector: 'app-record-form',
@@ -14,25 +15,28 @@ export class RecordFormComponent implements OnInit, OnDestroy {
   private categoryCreatedSubscr: Subscription;
 
   private recordForm = new FormGroup({
-    categoryName: new FormControl(null, Validators.required),
+    category: new FormControl(null, Validators.required),
     type: new FormControl('income'),
-    value: new FormControl(null, Validators.required),
+    value: new FormControl(null, [
+      Validators.required,
+      Validators.min(1)
+    ]),
     comment: new FormControl(null)
-  });
+  }, CategoryLimitValidator);
 
   constructor(private recordService: RecordService) {}
 
   ngOnInit() {
     this.recordService.getCategories().subscribe(categories => {
       this.categories = categories;
-      this.recordForm.controls['categoryName'].setValue(categories[0].name);
+      this.recordForm.controls['category'].setValue(categories[0]);
     });
 
     this.categoryCreatedSubscr = this.recordService.categoryCreated$
       .subscribe(category => {
         this.categories.push(category);
         if (this.categories.length === 1) {
-          this.recordForm.controls['categoryName'].setValue(category.name);
+          this.recordForm.controls['category'].setValue(category);
         }
       });
   }

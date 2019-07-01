@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { ICategory } from './category.interface';
 import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { IRecord } from './record.interface';
 
 @Injectable()
@@ -18,7 +18,14 @@ export class RecordService {
       'X-Auth': localStorage.getItem('token')
     });
 
-    return this.httpClient.get<ICategory[]>(url, { headers });
+    return this.httpClient.get<ICategory[]>(url, { headers }).pipe(
+      map(categories => {
+        return categories.map(category => {
+          category.limit = category.limit === null ? Infinity : category.limit;
+          return category;
+        });
+      })
+    );
   }
 
   createCategory(category: ICategory): Observable<ICategory> {
@@ -32,7 +39,10 @@ export class RecordService {
 
     return this.httpClient.post<ICategory>(url, body, { headers })
       .pipe(
-        tap((newCategory) => this.categoryCreated$.next(newCategory))
+        tap((newCategory) => {
+          console.log(newCategory);
+          this.categoryCreated$.next(newCategory);
+        })
       );
   }
 

@@ -1,5 +1,7 @@
+import { ICategory } from './category.interface';
+
 export interface IRecord {
-  categoryName: string;
+  category: ICategory;
   recordType: 'income' | 'consumption';
   value: number;
   comment?: string;

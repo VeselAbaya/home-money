@@ -3,14 +3,15 @@
     <div class="form-group">
       <label class="form-label">Выберите Категорию</label>
       <select class="form-input"
-              formControlName="categoryName">
-        <option *ngFor="let category of categories">
+              formControlName="category">
+        <option *ngFor="let category of categories"
+                 [ngValue]="category">
           {{category.name}}
         </option>
       </select>
-      <ng-template [ngIf]="recordForm.get('categoryName').touched && recordForm.get('categoryName').invalid">
+      <ng-template [ngIf]="recordForm.get('category').touched && recordForm.get('category').invalid">
         <span class="form-error-message"
-              *ngIf="recordForm.get('categoryName').errors.required">
+              *ngIf="recordForm.get('category').errors.required">
           Это обязательное поле
         </span>
       </ng-template>
@@ -35,12 +36,20 @@
     <div class="form-group">
       <label class="form-label">Введите Сумму</label>
       <input class="form-input"
-             type="number"
+             type="number" min="1"
              formControlName="value">
       <ng-template [ngIf]="recordForm.get('value').touched && recordForm.get('value').invalid">
         <span class="form-error-message"
               *ngIf="recordForm.get('value').errors.required">
           Это обязательное поле
+        </span>
+        <span class="form-error-message"
+              *ngIf="recordForm.get('value').errors.min">
+          Значение должно быть больше {{recordForm.get('value').errors.min.min}}
+        </span>
+        <span class="form-error-message"
+              *ngIf="recordForm.get('value').errors.categoryLimit">
+          Превышен лимит ({{recordForm.get('value').errors.categoryLimit.category.limit}}) для данной категории
         </span>
       </ng-template>
     </div>
