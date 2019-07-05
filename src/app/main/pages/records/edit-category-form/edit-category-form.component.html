@@ -1,0 +1,40 @@
+<app-card title="Изменить Категорию">
+  <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label">Выберите Категорию</label>
+      <select class="form-input"
+              formControlName="category">
+        <option *ngFor="let category of (recordService.categories | async)"
+                [ngValue]="category">
+          {{category.name}}
+        </option>
+      </select>
+      <ng-template [ngIf]="editCategoryForm.get('category').touched && editCategoryForm.get('category').invalid">
+        <span class="form-error-message"
+              *ngIf="editCategoryForm.get('category').errors.required">
+          Это обязательное поле
+        </span>
+      </ng-template>
+    </div>
+    <div class="form-group">
+      <label class="form-label">
+        Введите Лимит <sub style="font-size: 10px;">(необязательно)</sub>
+      </label>
+      <input class="form-input"
+             type="number" min="1"
+             placeholder="Оставьте поле пустым, если хотите сбросить"
+             formControlName="limit">
+      <ng-template [ngIf]="editCategoryForm.get('limit').touched && editCategoryForm.get('limit').invalid">
+        <span class="form-error-message"
+              *ngIf="editCategoryForm.get('limit').errors.min">
+          Значение должно быть больше {{editCategoryForm.get('limit').errors.min.min}}
+        </span>
+      </ng-template>
+    </div>
+    <button class="form-submit"
+            type="submit"
+            [disabled]="editCategoryForm.invalid">
+      Изменить
+    </button>
+  </form>
+</app-card>

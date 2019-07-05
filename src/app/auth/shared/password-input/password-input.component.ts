@@ -1,4 +1,4 @@
-import { Component, forwardRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { Component, forwardRef, Renderer2, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({

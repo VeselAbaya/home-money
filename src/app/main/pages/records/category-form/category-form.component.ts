@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecordService } from '../service/record.service';
+import { CategoryAlreadyExistsValidator } from './category-already-exists.validator';
 
 @Component({
   selector: 'app-category-form',
@@ -9,8 +10,11 @@ import { RecordService } from '../service/record.service';
 })
 export class CategoryFormComponent {
   private categoryForm = new FormGroup({
-    name: new FormControl(null, Validators.required),
-    limit: new FormControl(null)
+    name: new FormControl(null,
+      Validators.required,
+      CategoryAlreadyExistsValidator.create(this.recordService)
+    ),
+    limit: new FormControl(null, Validators.min(1))
   });
 
   constructor(private recordService: RecordService) {}

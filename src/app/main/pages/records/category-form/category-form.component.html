@@ -1,13 +1,17 @@
 <app-card title="Добавить Категорию">
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="form-label">Выберите Название</label>
+      <label class="form-label">Введите название</label>
       <input class="form-input"
              formControlName="name">
       <ng-template [ngIf]="categoryForm.get('name').touched && categoryForm.get('name').invalid">
         <span class="form-error-message"
               *ngIf="categoryForm.get('name').errors.required">
           Это обязательное поле
+        </span>
+        <span class="form-error-message"
+              *ngIf="categoryForm.get('name').errors.categoryAlreadyExists">
+          Категория с таким названием уже есть
         </span>
       </ng-template>
     </div>
@@ -16,8 +20,14 @@
         Введите Лимит <sub style="font-size: 10px;">(необязательно)</sub>
       </label>
       <input class="form-input"
-             type="number"
+             type="number" min="1"
              formControlName="limit">
+      <ng-template [ngIf]="categoryForm.get('limit').touched && categoryForm.get('limit').invalid">
+        <span class="form-error-message"
+              *ngIf="categoryForm.get('limit').errors.min">
+          Значение должно быть больше {{categoryForm.get('limit').errors.min.min}}
+        </span>
+      </ng-template>
     </div>
     <button class="form-submit"
             type="submit"

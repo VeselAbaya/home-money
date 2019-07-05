@@ -4,8 +4,8 @@
       <label class="form-label">Выберите Категорию</label>
       <select class="form-input"
               formControlName="category">
-        <option *ngFor="let category of categories"
-                 [ngValue]="category">
+        <option *ngFor="let category of (recordService.categories | async)"
+                [ngValue]="category">
           {{category.name}}
         </option>
       </select>
@@ -49,7 +49,7 @@
         </span>
         <span class="form-error-message"
               *ngIf="recordForm.get('value').errors.categoryLimit">
-          Превышен лимит ({{recordForm.get('value').errors.categoryLimit.category.limit}}) для данной категории
+          Превышен лимит ({{recordForm.get('value').errors.categoryLimit.category.limit}})
         </span>
       </ng-template>
     </div>

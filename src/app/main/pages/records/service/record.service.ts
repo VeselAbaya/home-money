@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { ICategory } from './category.interface';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { IRecord } from './record.interface';
 
 @Injectable()
 export class RecordService {
-  categoryCreated$ = new Subject<ICategory>();
+  private _categories: ICategory[];
+  public categories = new Subject<ICategory[]>();
 
   constructor(private httpClient: HttpClient) {}
 
-  getCategories(): Observable<ICategory[]> {
+  loadCategories(): Observable<ICategory[]> {
     const url = `${environment.serverURL}/categories`;
     const headers = new HttpHeaders({
       'X-Auth': localStorage.getItem('token')
@@ -24,6 +25,10 @@ export class RecordService {
           category.limit = category.limit === null ? Infinity : category.limit;
           return category;
         });
+      }),
+      tap(categories => {
+        this._categories = categories;
+        this.categories.next(this._categories);
       })
     );
   }
@@ -40,8 +45,10 @@ export class RecordService {
     return this.httpClient.post<ICategory>(url, body, { headers })
       .pipe(
         tap((newCategory) => {
-          console.log(newCategory);
-          this.categoryCreated$.next(newCategory);
+          newCategory.limit = newCategory.limit === null ? Infinity : newCategory.limit;
+
+          this._categories.push(newCategory);
+          this.categories.next(this._categories);
         })
       );
   }
@@ -53,5 +60,23 @@ export class RecordService {
     });
 
     return this.httpClient.post<IRecord>(url, record, { headers });
+  }
+
+  updateCategory(categoryId: string, limit: number) {
+    const url = `${environment.serverURL}/categories/${categoryId}`;
+    const headers = new HttpHeaders({
+      'X-Auth': localStorage.getItem('token')
+    });
+
+    return this.httpClient.patch<ICategory>(url, { limit }, { headers })
+      .pipe(
+        tap(updatedCategory => {
+          this._categories.find(
+            category => updatedCategory.name === category.name
+          ).limit = limit;
+
+          this.categories.next(this._categories);
+        })
+      );
   }
 }
