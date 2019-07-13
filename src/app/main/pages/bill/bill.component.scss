@@ -1,12 +1,6 @@
 @import "../../../../assets/font-awesome/css/fontello.css";
 @import "../../../../assets/styles/variables";
-
-.bill__title {
-  margin: 0 0 20px 0;
-  padding-bottom: 10px;
-
-  border-bottom: 1px solid $headerBackgroundColor;
-}
+@import "../assets/page";
 
 .bill__refresh {
   background-color: transparent;
@@ -24,26 +18,5 @@
 
   &:focus {
     outline: 1px solid $blue;
-  }
-}
-
-.bill__body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-app-bill-card, app-currency-card {
-  flex-basis: 49%;
-  min-width: 255px;
-  margin-bottom: 10px;
-
-  border-radius: 1px;
-
-  background-color: #ffffff;
-  box-shadow: 1px 1px 5px rgba(126,142,159,.1);
-
-  @media (max-width: 740px) {
-    flex-basis: 100%;
   }
 }

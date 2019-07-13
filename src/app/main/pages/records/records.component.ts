@@ -12,6 +12,6 @@ export class RecordsComponent implements OnInit {
   constructor(private recordService: RecordService) {}
 
   ngOnInit() {
-    this.recordService.loadCategories().subscribe();
+    this.recordService.uploadCategories().subscribe();
   }
 }

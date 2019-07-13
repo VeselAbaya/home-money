@@ -1,8 +1,10 @@
-<h2 class="bill__title">
+<h2 class="page__title">
   Страница Счета
   <button class="icon-refresh bill__refresh" (click)="updateBillAndRates()"></button>
 </h2>
-<div class="bill__body">
-  <app-bill-card [bill]="bill" [rates]="rates"></app-bill-card>
-  <app-currency-card [rates]="rates"></app-currency-card>
+<div class="page__body">
+  <app-bill-card class="page__card"
+                 [bill]="bill"
+                 [rates]="rates"></app-bill-card>
+  <app-currency-card class="page__card" [rates]="rates"></app-currency-card>
 </div>

@@ -6,7 +6,7 @@
   z-index: 1; // bugfix - try to remove and go /main/records on mobile,
               // then open navigation and you will see the bug
 
-  @media (max-width: 500px) {
+  @media (max-width: $adaptiveSize) {
     display: block;
     width: 190px;
     height: 100vh;

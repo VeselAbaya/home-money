@@ -19,6 +19,7 @@ import { HistoryComponent } from './pages/history/history.component';
 import { PlanningComponent } from './pages/planning/planning.component';
 
 import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
+import { CategoryBarDirective } from './pages/planning/category-bar.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SwipeEmitterDirective } from './swipeEmitter/swipe-emitter.directive';
     HistoryComponent,
     PlanningComponent,
 
-    SwipeEmitterDirective
+    SwipeEmitterDirective,
+    CategoryBarDirective
   ],
   imports: [
     CommonModule,

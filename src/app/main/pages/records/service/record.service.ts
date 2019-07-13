@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { ICategory } from './category.interface';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { IRecord } from './record.interface';
 
@@ -13,19 +13,13 @@ export class RecordService {
 
   constructor(private httpClient: HttpClient) {}
 
-  loadCategories(): Observable<ICategory[]> {
+  uploadCategories(): Observable<ICategory[]> {
     const url = `${environment.serverURL}/categories`;
     const headers = new HttpHeaders({
       'X-Auth': localStorage.getItem('token')
     });
 
     return this.httpClient.get<ICategory[]>(url, { headers }).pipe(
-      map(categories => {
-        return categories.map(category => {
-          category.limit = category.limit === null ? Infinity : category.limit;
-          return category;
-        });
-      }),
       tap(categories => {
         this._categories = categories;
         this.categories.next(this._categories);
@@ -35,17 +29,15 @@ export class RecordService {
 
   createCategory(category: ICategory): Observable<ICategory> {
     const url = `${environment.serverURL}/categories`;
-    const body: ICategory = {name: category.name};
-    if (category.limit) { body.limit = category.limit; }
 
     const headers = new HttpHeaders({
       'X-Auth': localStorage.getItem('token')
     });
 
-    return this.httpClient.post<ICategory>(url, body, { headers })
+    return this.httpClient.post<ICategory>(url, category, { headers })
       .pipe(
         tap((newCategory) => {
-          newCategory.limit = newCategory.limit === null ? Infinity : newCategory.limit;
+          newCategory.oneTimeLimit = newCategory.oneTimeLimit === null ? Infinity : newCategory.oneTimeLimit;
 
           this._categories.push(newCategory);
           this.categories.next(this._categories);
@@ -62,18 +54,21 @@ export class RecordService {
     return this.httpClient.post<IRecord>(url, record, { headers });
   }
 
-  updateCategory(categoryId: string, limit: number) {
+  updateCategory(categoryId: string, oneTimeLimit: number, periodLimit: number) {
     const url = `${environment.serverURL}/categories/${categoryId}`;
+    const body = { oneTimeLimit, periodLimit };
     const headers = new HttpHeaders({
       'X-Auth': localStorage.getItem('token')
     });
 
-    return this.httpClient.patch<ICategory>(url, { limit }, { headers })
+    return this.httpClient.patch<ICategory>(url, body, { headers })
       .pipe(
         tap(updatedCategory => {
-          this._categories.find(
-            category => updatedCategory.name === category.name
-          ).limit = limit;
+          ['oneTimeLimit', 'periodLimit'].forEach(limit => {
+            this._categories.find( // find updated category and update it's limits
+              category => updatedCategory.name === category.name
+            )[limit] = limit;
+          });
 
           this.categories.next(this._categories);
         })

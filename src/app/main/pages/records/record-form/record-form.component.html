@@ -1,4 +1,4 @@
-<app-card title="Добавить Запись">
+<app-card cardTitle="Добавить Запись">
   <form [formGroup]="recordForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label class="form-label">Выберите Категорию</label>
@@ -49,7 +49,7 @@
         </span>
         <span class="form-error-message"
               *ngIf="recordForm.get('value').errors.categoryLimit">
-          Превышен лимит ({{recordForm.get('value').errors.categoryLimit.category.limit}})
+          Превышен лимит ({{recordForm.get('value').errors.categoryLimit.category.oneTimeLimit}})
         </span>
       </ng-template>
     </div>

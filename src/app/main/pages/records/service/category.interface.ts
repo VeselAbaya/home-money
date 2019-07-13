@@ -1,6 +1,8 @@
 export interface ICategory {
   name: string;
-  limit?: number;
+  currentCosts?: number;
+  oneTimeLimit?: number;
+  periodLimit?: number;
   _userId?: string;
   _id?: string;
 }

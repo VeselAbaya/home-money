@@ -11,21 +11,27 @@ import { ICategory } from '../service/category.interface';
 export class EditCategoryFormComponent implements OnInit {
   private editCategoryForm = new FormGroup({
     category: new FormControl(null, Validators.required),
-    limit: new FormControl(null, Validators.min(1))
+    oneTimeLimit: new FormControl(null, Validators.min(1)),
+    periodLimit: new FormControl(null, Validators.min(1))
   });
 
   constructor(private recordService: RecordService) {}
 
   ngOnInit() {
     this.editCategoryForm.get('category').valueChanges.subscribe((category: ICategory) => {
-      if (category.limit !== Infinity) {
-        this.editCategoryForm.get('limit').setValue(category.limit);
-      }
+      ['oneTimeLimit', 'periodLimit'].forEach(limit => {
+        if (category[limit] !== Infinity) {
+          this.editCategoryForm.get(limit).setValue(category[limit]);
+        }
+      });
     });
   }
 
   onSubmit() {
     const form = this.editCategoryForm.value;
-    this.recordService.updateCategory(form.category._id, form.limit).subscribe();
+    this.recordService.updateCategory(form.category._id, form.oneTimeLimit, form.periodLimit)
+      .subscribe(() => {
+        this.editCategoryForm.reset();
+      });
   }
 }

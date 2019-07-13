@@ -1,7 +1,7 @@
-<app-card title="Добавить Категорию">
+<app-card cardTitle="Добавить Категорию">
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="form-label">Введите название</label>
+      <label class="form-label">Введите Название</label>
       <input class="form-input"
              formControlName="name">
       <ng-template [ngIf]="categoryForm.get('name').touched && categoryForm.get('name').invalid">
@@ -17,15 +17,29 @@
     </div>
     <div class="form-group">
       <label class="form-label">
-        Введите Лимит <sub style="font-size: 10px;">(необязательно)</sub>
+        Введите Лимит Одноразового Расхода <sub style="font-size: 10px;">(необязательно)</sub>
       </label>
       <input class="form-input"
              type="number" min="1"
-             formControlName="limit">
-      <ng-template [ngIf]="categoryForm.get('limit').touched && categoryForm.get('limit').invalid">
+             formControlName="oneTimeLimit">
+      <ng-template [ngIf]="categoryForm.get('oneTimeLimit').touched && categoryForm.get('oneTimeLimit').invalid">
         <span class="form-error-message"
-              *ngIf="categoryForm.get('limit').errors.min">
-          Значение должно быть больше {{categoryForm.get('limit').errors.min.min}}
+              *ngIf="categoryForm.get('oneTimeLimit').errors.min">
+          Значение должно быть больше {{categoryForm.get('oneTimeLimit').errors.min.min}}
+        </span>
+      </ng-template>
+    </div>
+    <div class="form-group">
+      <label class="form-label">
+        Введите Суммарный Лимит На Месяц <sub style="font-size: 10px;">(необязательно)</sub>
+      </label>
+      <input class="form-input"
+             type="number" min="1"
+             formControlName="periodLimit">
+      <ng-template [ngIf]="categoryForm.get('periodLimit').touched && categoryForm.get('periodLimit').invalid">
+        <span class="form-error-message"
+              *ngIf="categoryForm.get('periodLimit').errors.min">
+          Значение должно быть больше {{categoryForm.get('periodLimit').errors.min.min}}
         </span>
       </ng-template>
     </div>

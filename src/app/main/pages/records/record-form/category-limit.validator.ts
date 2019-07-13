@@ -6,7 +6,7 @@ export const CategoryLimitValidator = (recordForm: AbstractControl) => {
 
   if (valueControl.value && categoryControl.value) {
     const record = valueControl.value;
-    const categoryLimit = categoryControl.value.limit;
+    const categoryLimit = categoryControl.value.oneTimeLimit || Infinity;
     if (record > categoryLimit) {
       const error = {
         categoryLimit: {category: categoryControl.value, actualValue: record},

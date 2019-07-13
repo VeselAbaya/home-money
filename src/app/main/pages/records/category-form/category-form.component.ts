@@ -14,12 +14,16 @@ export class CategoryFormComponent {
       Validators.required,
       CategoryAlreadyExistsValidator.create(this.recordService)
     ),
-    limit: new FormControl(null, Validators.min(1))
+    oneTimeLimit: new FormControl(null, Validators.min(1)),
+    periodLimit: new FormControl(null, Validators.min(1))
   });
 
   constructor(private recordService: RecordService) {}
 
   onSubmit() {
-    this.recordService.createCategory(this.categoryForm.value).subscribe();
+    this.recordService.createCategory(this.categoryForm.value)
+      .subscribe(() => {
+        this.categoryForm.reset();
+      });
   }
 }

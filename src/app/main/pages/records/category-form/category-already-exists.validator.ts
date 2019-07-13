@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { RecordService } from '../service/record.service';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 @Injectable()
 export class CategoryAlreadyExistsValidator {
@@ -15,7 +15,8 @@ export class CategoryAlreadyExistsValidator {
           }
 
           return null;
-        })
+        }),
+        first()
       );
     };
   }

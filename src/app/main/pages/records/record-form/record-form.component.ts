@@ -22,6 +22,9 @@ export class RecordFormComponent {
   constructor(private recordService: RecordService) {}
 
   onSubmit() {
-    this.recordService.createRecord(this.recordForm.value).subscribe();
+    this.recordService.createRecord(this.recordForm.value)
+      .subscribe(() => {
+        this.recordForm.reset();
+      });
   }
 }

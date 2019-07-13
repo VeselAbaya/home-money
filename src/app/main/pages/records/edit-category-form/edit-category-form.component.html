@@ -1,4 +1,4 @@
-<app-card title="Изменить Категорию">
+<app-card cardTitle="Изменить Категорию">
   <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label class="form-label">Выберите Категорию</label>
@@ -18,16 +18,31 @@
     </div>
     <div class="form-group">
       <label class="form-label">
-        Введите Лимит <sub style="font-size: 10px;">(необязательно)</sub>
+        Введите Лимит Одноразового Расхода <sub style="font-size: 10px;">(необязательно)</sub>
       </label>
       <input class="form-input"
              type="number" min="1"
              placeholder="Оставьте поле пустым, если хотите сбросить"
-             formControlName="limit">
-      <ng-template [ngIf]="editCategoryForm.get('limit').touched && editCategoryForm.get('limit').invalid">
+             formControlName="oneTimeLimit">
+      <ng-template [ngIf]="editCategoryForm.get('oneTimeLimit').touched && editCategoryForm.get('oneTimeLimit').invalid">
         <span class="form-error-message"
-              *ngIf="editCategoryForm.get('limit').errors.min">
-          Значение должно быть больше {{editCategoryForm.get('limit').errors.min.min}}
+              *ngIf="editCategoryForm.get('oneTimeLimit').errors.min">
+          Значение должно быть больше {{editCategoryForm.get('oneTimeLimit').errors.min.min}}
+        </span>
+      </ng-template>
+    </div>
+    <div class="form-group">
+      <label class="form-label">
+        Введите Суммарный Лимит На Месяц <sub style="font-size: 10px;">(необязательно)</sub>
+      </label>
+      <input class="form-input"
+             type="number" min="1"
+             placeholder="Оставьте поле пустым, если хотите сбросить"
+             formControlName="periodLimit">
+      <ng-template [ngIf]="editCategoryForm.get('periodLimit').touched && editCategoryForm.get('periodLimit').invalid">
+        <span class="form-error-message"
+              *ngIf="editCategoryForm.get('periodLimit').errors.min">
+          Значение должно быть больше {{editCategoryForm.get('periodLimit').errors.min.min}}
         </span>
       </ng-template>
     </div>

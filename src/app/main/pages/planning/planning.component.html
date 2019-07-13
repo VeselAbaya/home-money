@@ -1,3 +1,36 @@
-<p>
-  planning works!
-</p>
+<h2 class="page__title">
+  Страница Планирования
+</h2>
+<div class="page__body">
+  <app-card class="page__card" cardTitle="Расходы">
+    <div class="costs" *ngFor="let category of (recordService.categories | async)">
+      <div class="cost__bar" [title]="category.name">
+        <span class="cost__title">{{category.name}}</span>
+        <div class="cost__progress" [appCategoryBar]="category" #categoryBar></div>
+      </div>
+      <div class="cost__description">
+        <div>
+          <span [ngStyle]="{'color': categoryBar.style.backgroundColor}">
+            {{(category.currentCosts > 0 ? category.currentCosts : 0) | number: '1.2-2'}}
+          </span>
+          <span *ngIf="category.periodLimit">
+            из
+            <span style="color: #0275d8">
+              {{category.periodLimit | number: '1.2-2'}}
+            </span>
+          </span>
+          <span *ngIf="category.currentCosts < 0"
+                 style="color: #5cb85c">
+            (+{{-category.currentCosts | number: '1.2-2'}})
+          </span>
+        </div>
+        <div *ngIf="category.periodLimit && category.periodLimit-category.currentCosts > 0">
+          осталось
+          <span style="color: #5cb85c">
+            {{(category.periodLimit - category.currentCosts) | number: '1.2-2'}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </app-card>
+</div>
