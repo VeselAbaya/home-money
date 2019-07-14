@@ -1,67 +1,59 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
+
 import { ICategory } from './category.interface';
-import { Observable, Subject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { IRecord } from './record.interface';
 
 @Injectable()
 export class RecordService {
   private _categories: ICategory[];
-  public categories = new Subject<ICategory[]>();
+  public categories$ = new Subject<ICategory[]>();
 
   constructor(private httpClient: HttpClient) {}
 
-  uploadCategories(): Observable<ICategory[]> {
+  get categories(): Subject<ICategory[]> {
+    if (this._categories) {
+      return this.categories$;
+    }
+
     const url = `${environment.serverURL}/categories`;
-    const headers = new HttpHeaders({
-      'X-Auth': localStorage.getItem('token')
+
+    this.httpClient.get<ICategory[]>(url).subscribe((categories) => {
+      this._categories = categories;
+      this.categories$.next(this._categories);
     });
 
-    return this.httpClient.get<ICategory[]>(url, { headers }).pipe(
-      tap(categories => {
-        this._categories = categories;
-        this.categories.next(this._categories);
-      })
-    );
+    return this.categories$;
   }
 
   createCategory(category: ICategory): Observable<ICategory> {
     const url = `${environment.serverURL}/categories`;
 
-    const headers = new HttpHeaders({
-      'X-Auth': localStorage.getItem('token')
-    });
-
-    return this.httpClient.post<ICategory>(url, category, { headers })
+    return this.httpClient.post<ICategory>(url, category)
       .pipe(
         tap((newCategory) => {
           newCategory.oneTimeLimit = newCategory.oneTimeLimit === null ? Infinity : newCategory.oneTimeLimit;
 
           this._categories.push(newCategory);
-          this.categories.next(this._categories);
+          this.categories$.next(this._categories);
         })
       );
   }
 
   createRecord(record: IRecord) {
     const url = `${environment.serverURL}/records`;
-    const headers = new HttpHeaders({
-      'X-Auth': localStorage.getItem('token')
-    });
 
-    return this.httpClient.post<IRecord>(url, record, { headers });
+    return this.httpClient.post<IRecord>(url, record);
   }
 
   updateCategory(categoryId: string, oneTimeLimit: number, periodLimit: number) {
     const url = `${environment.serverURL}/categories/${categoryId}`;
     const body = { oneTimeLimit, periodLimit };
-    const headers = new HttpHeaders({
-      'X-Auth': localStorage.getItem('token')
-    });
 
-    return this.httpClient.patch<ICategory>(url, body, { headers })
+    return this.httpClient.patch<ICategory>(url, body)
       .pipe(
         tap(updatedCategory => {
           ['oneTimeLimit', 'periodLimit'].forEach(limit => {
@@ -70,7 +62,7 @@ export class RecordService {
             )[limit] = limit;
           });
 
-          this.categories.next(this._categories);
+          this.categories$.next(this._categories);
         })
       );
   }

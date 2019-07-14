@@ -17,7 +17,13 @@
       </ng-template>
     </div>
     <div class="form-group">
-      <label class="form-label">Выберите Тип</label>
+      <label class="form-label">
+        Выберите Тип
+        <span class="form-error-message"
+             *ngIf="recordForm.get('type').touched && recordForm.get('type').invalid">
+          Это обязательное поле
+        </span>
+      </label>
       <label class="form-label form-radio">
         <input class="form-input"
                type="radio"
@@ -43,6 +49,8 @@
               *ngIf="recordForm.get('value').errors.required">
           Это обязательное поле
         </span>
+      </ng-template>
+      <ng-template [ngIf]="recordForm.get('value').invalid">
         <span class="form-error-message"
               *ngIf="recordForm.get('value').errors.min">
           Значение должно быть больше {{recordForm.get('value').errors.min.min}}

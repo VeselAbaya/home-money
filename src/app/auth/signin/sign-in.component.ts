@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../shared/user/user.service';
 import { Router } from '@angular/router';
+
+import { UserService } from '../../shared/user/user.service';
 
 @Component({
   selector: 'app-sign-in',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { RecordService } from '../service/record.service';
 import { CategoryLimitValidator } from './category-limit.validator';
 
@@ -11,7 +12,7 @@ import { CategoryLimitValidator } from './category-limit.validator';
 export class RecordFormComponent {
   private recordForm = new FormGroup({
     category: new FormControl(null, Validators.required),
-    type: new FormControl('income'),
+    type: new FormControl(null, Validators.required),
     value: new FormControl(null, [
       Validators.required,
       Validators.min(1)

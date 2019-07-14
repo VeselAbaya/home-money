@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { IRates } from '../service/rates.interface';
 
 @Component({

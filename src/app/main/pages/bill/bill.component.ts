@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IBill } from './service/bill.interface';
+
 import { BillService } from './service/bill.service';
+import { IBill } from './service/bill.interface';
 import { IRates } from './service/rates.interface';
 
 @Component({
@@ -15,14 +16,14 @@ export class BillComponent implements OnInit {
   constructor(private billService: BillService) {}
 
   private updateBillAndRates() {
-    // this.bill = this.rates = null;
-    //
-    // this.billService.getBill().subscribe(bill => {
-    //   this.bill = bill;
-    //   this.billService.getCurrencyFactors().subscribe(rates => {
-    //     this.rates = rates;
-    //   });
-    // });
+    this.bill = this.rates = null;
+
+    this.billService.getBill().subscribe(bill => {
+      this.bill = bill;
+      this.billService.getCurrencyFactors().subscribe(rates => {
+        this.rates = rates;
+      });
+    });
   }
 
   ngOnInit() {

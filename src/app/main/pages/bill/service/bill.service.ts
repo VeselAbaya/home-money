@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IBill } from './bill.interface';
-import { environment } from '../../../../../environments/environment';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../../../environments/environment';
+
+import { IBill } from './bill.interface';
 import { IRates } from './rates.interface';
 
 @Injectable()

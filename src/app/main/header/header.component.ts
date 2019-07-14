@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../../shared/user/user.interface';
-import { UserService } from '../../shared/user/user.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { IUser } from '../../shared/user/user.interface';
+import { UserService } from '../../shared/user/user.service';
 
 @Component({
   selector: 'app-header',

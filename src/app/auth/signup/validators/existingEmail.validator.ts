@@ -1,6 +1,7 @@
-import { UserService } from '../../../shared/user/user.service';
 import { AbstractControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
+
+import { UserService } from '../../../shared/user/user.service';
 
 export class ExistingEmailValidator {
   static create(userService: UserService) {
