@@ -35,7 +35,7 @@
   }
 
   // invalid
-  &-input[type="radio"].ng-invalid.ng-touched + .custom-radio {
+  &-input[type="radio"].ng-invalid.ng-touched:focus + .custom-radio {
     outline: 1px dashed $errorColor;
   }
 }
