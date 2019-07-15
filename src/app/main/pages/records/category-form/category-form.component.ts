@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { RecordService } from '../service/record.service';
-import { CategoryAlreadyExistsValidator } from './category-already-exists.validator';
+import { CategoryAlreadyExistsValidator } from './validators/category-already-exists.validator';
 
 @Component({
   selector: 'app-category-form',

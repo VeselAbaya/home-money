@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { RecordService } from '../service/record.service';
-import { CategoryLimitValidator } from './category-limit.validator';
+import { CategoryLimitValidator } from './validators/category-limit.validator';
 
 @Component({
   selector: 'app-record-form',

@@ -16,6 +16,8 @@ export class RecordService {
 
   get categories(): Subject<ICategory[]> {
     if (this._categories) {
+      // return subject and then immediately .next() it
+      setTimeout(this.categories$.next(this._categories));
       return this.categories$;
     }
 

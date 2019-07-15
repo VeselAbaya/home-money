@@ -9,6 +9,8 @@
               *ngIf="categoryForm.get('name').errors.required">
           Это обязательное поле
         </span>
+      </ng-template>
+      <ng-template [ngIf]="categoryForm.get('name').invalid">
         <span class="form-error-message"
               *ngIf="categoryForm.get('name').errors.categoryAlreadyExists">
           Категория с таким названием уже есть
